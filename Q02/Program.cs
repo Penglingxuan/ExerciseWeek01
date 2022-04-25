@@ -7,19 +7,27 @@ public class Program
         Console.WriteLine("今天是:" + DateTime.Now.ToString("ddd dd MMM, yyyy"));
         Console.WriteLine("請輸入今日溫度");
         var inputTemperature = Console.ReadLine();
-        Console.WriteLine("請輸入今天天氣(天氣好/天氣不好)");
-        var inputWeather = Console.ReadLine();
-
         var result = string.Empty;
+        var inputWeather = string.Empty;
         if (int.TryParse(inputTemperature, out var temperature))
         {
-            result = WhatNeedToDo(DateTime.Now, temperature, inputWeather);
+            Console.WriteLine("請輸入今天天氣(天氣好/天氣不好)");
+            inputWeather = Console.ReadLine();
+            if (inputWeather == "天氣好" || inputWeather == "天氣不好")
+            {
+                result = WhatNeedToDo(DateTime.Now, temperature, inputWeather);
+            }
+            else
+            {
+                result = "只能輸入天氣好/天氣不好";
+            }
         }
         else
         {
             result = "輸入的好像不是數字耶XD";
         }
-        Console.WriteLine($"今天要{result}");
+
+        Console.WriteLine(result);
     }
     static string WhatNeedToDo(DateTime Date, float temperature, string Weather)
     {
